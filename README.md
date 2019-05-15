@@ -1,0 +1,2 @@
+# squzy-core-proto
+
