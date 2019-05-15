@@ -1,0 +1,147 @@
+syntax = 'proto3';
+
+package squzy.core.v1.checkers;
+
+import "google/api/annotations.proto";
+
+service CheckerService {
+    rpc addChecker (AddCheckerRequest) returns (AddCheckerResponse) {
+    }
+    rpc updateChecker (UpdateCheckerRequest) returns (UpdateCheckerResponse) {
+    }
+    rpc removeChecker (RemoveCheckerRequest) returns (RemoveCheckerResponse) {
+    }
+    rpc stopChecker (StopCheckerRequest) returns (StopCheckerResponse) {
+    }
+    rpc startChecker (StartCheckerRequest) returns (StartCheckerResponse) {
+    }
+}
+
+enum CheckTypes {
+    HTTP = 0;
+    TCP = 1;
+    GRPC = 2;
+    SMTP = 3;
+    POP = 4;
+}
+
+message CheckRecord {
+    string url = 1;
+    string method = 2;
+    int32 interval = 3;
+}
+
+message AddCheckerRequest {
+    string project_id = 1;
+    CheckTypes checkType = 2;
+    CheckRecord check = 3;
+}
+
+message AddCheckerResponse {
+    oneof result {
+        string checker_id = 1;
+        Error error = 2;
+    }
+
+    message Error {
+        Code code = 1;
+        string message = 2;
+        enum Code {
+            // Internal error
+            INTERNAL_ERROR = 0;
+            // Project not found
+            NOT_FOUND_PROJECT = 1;
+        }
+    }
+}
+
+
+message UpdateCheckerRequest {
+    string checker_id = 1;
+    CheckRecord check = 3;
+}
+
+message UpdateCheckerResponse {
+    oneof result {
+        CheckRecord checkRecord = 1;
+        Error error = 2;
+    }
+
+    message Error {
+        Code code = 1;
+        string message = 2;
+        enum Code {
+            // Internal error
+            INTERNAL_ERROR = 0;
+            // Project not found
+            NOT_FOUND_CHECKER = 1;
+        }
+    }
+}
+
+message RemoveCheckerRequest {
+    string checker_id = 1;
+}
+
+message RemoveCheckerResponse {
+    oneof result {
+        CheckRecord checkRecord = 1;
+        Error error = 2;
+    }
+
+    message Error {
+        Code code = 1;
+        string message = 2;
+        enum Code {
+            // Internal error
+            INTERNAL_ERROR = 0;
+            // Project not found
+            NOT_FOUND_CHECKER = 1;
+        }
+    }
+}
+
+message StopCheckerRequest {
+    string checker_id = 1;
+}
+
+message StopCheckerResponse {
+    oneof result {
+        CheckRecord checkRecord = 1;
+        Error error = 2;
+    }
+
+    message Error {
+        Code code = 1;
+        string message = 2;
+        enum Code {
+            // Internal error
+            INTERNAL_ERROR = 0;
+            // Project not found
+            NOT_FOUND_CHECKER = 1;
+        }
+    }
+}
+
+message StartCheckerRequest {
+    string checker_id = 1;
+}
+
+message StartCheckerResponse {
+    oneof result {
+        CheckRecord checkRecord = 1;
+        Error error = 2;
+    }
+
+    message Error {
+        Code code = 1;
+        string message = 2;
+        enum Code {
+            // Internal error
+            INTERNAL_ERROR = 0;
+            // Project not found
+            NOT_FOUND_CHECKER = 1;
+        }
+    }
+}
+
