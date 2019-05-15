@@ -2,8 +2,6 @@ syntax = 'proto3';
 
 package squzy.core.v1.checkers;
 
-import "google/api/annotations.proto";
-
 service CheckerService {
     rpc addChecker (AddCheckerRequest) returns (AddCheckerResponse) {
     }
