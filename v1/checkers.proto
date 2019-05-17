@@ -30,7 +30,6 @@ message CheckRecord {
 }
 
 message AddCheckerRequest {
-    string project_id = 1;
     CheckTypes checkType = 2;
     CheckRecord check = 3;
 }
@@ -47,8 +46,6 @@ message AddCheckerResponse {
         enum Code {
             // Internal error
             INTERNAL_ERROR = 0;
-            // Project not found
-            NOT_FOUND_PROJECT = 1;
         }
     }
 }
@@ -71,7 +68,7 @@ message UpdateCheckerResponse {
         enum Code {
             // Internal error
             INTERNAL_ERROR = 0;
-            // Project not found
+            // Checker not found
             NOT_FOUND_CHECKER = 1;
         }
     }
@@ -93,7 +90,7 @@ message RemoveCheckerResponse {
         enum Code {
             // Internal error
             INTERNAL_ERROR = 0;
-            // Project not found
+            // Checker not found
             NOT_FOUND_CHECKER = 1;
         }
     }
@@ -115,7 +112,7 @@ message StopCheckerResponse {
         enum Code {
             // Internal error
             INTERNAL_ERROR = 0;
-            // Project not found
+            // Checker not found
             NOT_FOUND_CHECKER = 1;
         }
     }
@@ -137,7 +134,7 @@ message StartCheckerResponse {
         enum Code {
             // Internal error
             INTERNAL_ERROR = 0;
-            // Project not found
+            // Checker not found
             NOT_FOUND_CHECKER = 1;
         }
     }
