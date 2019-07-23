@@ -3,12 +3,12 @@ syntax = 'proto3';
 package squzy.core.v1.checkers;
 
 service CheckerService {
-    rpc addChecker (AddCheckerRequest) returns (AddCheckerResponse)
-    rpc updateChecker (UpdateCheckerRequest) returns (UpdateCheckerResponse)
-    rpc removeChecker (RemoveCheckerRequest) returns (RemoveCheckerResponse)
-    rpc stopChecker (StopCheckerRequest) returns (StopCheckerResponse)
-    rpc startChecker (StartCheckerRequest) returns (StartCheckerResponse)
-    rpc getCheckersByIds (GetCheckersByIdsRequest) returns (GetCheckersByIdsResponse)
+    rpc addChecker (AddCheckerRequest) returns (AddCheckerResponse);
+    rpc updateChecker (UpdateCheckerRequest) returns (UpdateCheckerResponse);
+    rpc removeChecker (RemoveCheckerRequest) returns (RemoveCheckerResponse);
+    rpc stopChecker (StopCheckerRequest) returns (StopCheckerResponse);
+    rpc startChecker (StartCheckerRequest) returns (StartCheckerResponse);
+    rpc getCheckersByIds (GetCheckersByIdsRequest) returns (GetCheckersByIdsResponse);
 }
 
 message GetCheckersByIdsRequest {
