@@ -17,7 +17,7 @@ message GetCheckersByIdsRequest {
 
 message CheckEntity {
     string id = 1;
-    CheckTypes checkType = 2;
+    string checkType = 2;
     string url = 3;
     string method = 4;
     int32 interval = 5;
