@@ -34,6 +34,8 @@ message AddCheckerRequest {
     bool run = 1;
     CheckTypes checkType = 2;
     CheckRecord check = 3;
+    string name = 4;
+    string description = 5;
 }
 
 message AddCheckerResponse {
@@ -55,7 +57,9 @@ message AddCheckerResponse {
 
 message UpdateCheckerRequest {
     string checker_id = 1;
-    CheckRecord check = 3;
+    CheckRecord check = 2;
+    string name = 3;
+    string description = 4;
 }
 
 message UpdateCheckerResponse {
