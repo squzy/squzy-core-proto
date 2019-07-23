@@ -3,15 +3,50 @@ syntax = 'proto3';
 package squzy.core.v1.checkers;
 
 service CheckerService {
-    rpc addChecker (AddCheckerRequest) returns (AddCheckerResponse) {
+    rpc addChecker (AddCheckerRequest) returns (AddCheckerResponse)
+    rpc updateChecker (UpdateCheckerRequest) returns (UpdateCheckerResponse)
+    rpc removeChecker (RemoveCheckerRequest) returns (RemoveCheckerResponse)
+    rpc stopChecker (StopCheckerRequest) returns (StopCheckerResponse)
+    rpc startChecker (StartCheckerRequest) returns (StartCheckerResponse)
+    rpc getCheckersByIds (GetCheckersByIdsRequest) returns (GetCheckersByIdsResponse)
+}
+
+message GetCheckersByIdsRequest {
+    repeated string check_id = 1;
+}
+
+message CheckEntity {
+    string id = 1;
+    CheckTypes checkType = 2;
+    string url = 3;
+    string method = 4;
+    int32 interval = 5;
+    map<string, string> headers = 6;
+    string status = 7;
+    string name = 8;
+    string description = 9;
+}
+
+message GetCheckersByIdsResponse {
+    oneof result {
+        Data data = 1;
+        Error error = 2;
     }
-    rpc updateChecker (UpdateCheckerRequest) returns (UpdateCheckerResponse) {
+
+    message Data {
+        repeated CheckEntity checks = 1;
     }
-    rpc removeChecker (RemoveCheckerRequest) returns (RemoveCheckerResponse) {
-    }
-    rpc stopChecker (StopCheckerRequest) returns (StopCheckerResponse) {
-    }
-    rpc startChecker (StartCheckerRequest) returns (StartCheckerResponse) {
+
+    message Error {
+        Code code = 1;
+        string message = 2;
+        enum Code {
+            // Internal error
+            INTERNAL_ERROR = 0;
+            // Project not found
+            PROJECT_NOT_FOUND = 1;
+
+        }
     }
 }
 
