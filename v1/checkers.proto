@@ -9,6 +9,29 @@ service CheckerService {
     rpc stopChecker (StopCheckerRequest) returns (StopCheckerResponse);
     rpc startChecker (StartCheckerRequest) returns (StartCheckerResponse);
     rpc getCheckersByIds (GetCheckersByIdsRequest) returns (GetCheckersByIdsResponse);
+    rpc getCheckById (GetCheckByIdRequest) returns (GetCheckByIdResponse);
+}
+
+message GetCheckByIdRequest {
+    string check_id = 1;
+}
+
+message GetCheckByIdResponse {
+    oneof result {
+        CheckEntity check = 1;
+        Error error = 2;
+    }
+
+    message Error {
+        Code code = 1;
+        string message = 2;
+        enum Code {
+            // Internal error
+            INTERNAL_ERROR = 0;
+            // Project not found
+            CHECK_NOT_FOUND = 1;
+        }
+    }
 }
 
 message GetCheckersByIdsRequest {
@@ -44,7 +67,7 @@ message GetCheckersByIdsResponse {
             // Internal error
             INTERNAL_ERROR = 0;
             // Project not found
-            PROJECT_NOT_FOUND = 1;
+            CHECK_NOT_FOUND = 1;
 
         }
     }
